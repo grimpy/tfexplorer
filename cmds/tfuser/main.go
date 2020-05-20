@@ -318,6 +318,14 @@ func main() {
 							Name:  "memory",
 							Usage: "limit the amount of memory a container can allocate",
 						},
+						cli.UintFlag{
+							Name:  "root-size",
+							Usage: "Size of the root fs",
+						},
+						cli.StringFlag{
+							Name:  "root-type",
+							Usage: "type of disk to use for the root fs",
+						},
 						cli.BoolFlag{
 							Name:  "public6",
 							Usage: "when enabled, the container will have a public IPv6 interface",

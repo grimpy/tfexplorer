@@ -26,8 +26,15 @@ func generateContainer(c *cli.Context) error {
 	}
 
 	cap := workloads.ContainerCapacity{
-		Cpu:    c.Int64("cpu"),
-		Memory: c.Int64("memory"),
+		Cpu:      c.Int64("cpu"),
+		Memory:   c.Int64("memory"),
+		DiskSize: c.Uint64("disk-size"),
+	}
+	switch strings.ToLower(c.String("disk-type")) {
+	case "hdd":
+		cap.DiskType = workloads.DiskTypeHDD
+	case "ssd":
+		cap.DiskType = workloads.DiskTypeSSD
 	}
 
 	var sts []workloads.StatsAggregator

@@ -49,3 +49,7 @@ stderr = (S)
 cpu = (I)
 # memory in MiB
 memory = (I)
+# root fs size in MiB
+disk_size = (I)
+# root fs type
+disk_type = "HDD,SSD" (E)

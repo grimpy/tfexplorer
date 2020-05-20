@@ -24,8 +24,10 @@ func (c Container) WorkloadID() int64 {
 }
 
 type ContainerCapacity struct {
-	Cpu    int64 `bson:"cpu" json:"cpu"`
-	Memory int64 `bson:"memory" json:"memory"`
+	Cpu      int64        `bson:"cpu" json:"cpu"`
+	Memory   int64        `bson:"memory" json:"memory"`
+	DiskSize uint64       `json:"disk_size" json:"disk_size"`
+	DiskType DiskTypeEnum `json:"disk_type" json:"disk_type"`
 }
 
 type Logs struct {

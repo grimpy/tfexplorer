@@ -132,11 +132,21 @@ func (e Stellar) processReservationResources(resData workloads.ReservationData) 
 }
 
 func processContainer(cont workloads.Container) rsu {
-	return rsu{
+	rsu := rsu{
 		cru: cont.Capacity.Cpu,
 		// round mru to 4 digits precision
 		mru: math.Round(float64(cont.Capacity.Memory)/1024*10000) / 10000,
 	}
+	switch cont.Capacity.DiskType {
+	case workloads.DiskTypeHDD:
+		hru := math.Round(float64(cont.Capacity.DiskSize)/1024*10000) / 10000
+		rsu.hru = int64(hru)
+	case workloads.DiskTypeSSD:
+		sru := math.Round(float64(cont.Capacity.DiskSize)/1024*10000) / 10000
+		rsu.sru = int64(sru)
+	}
+
+	return rsu
 }
 
 func processVolume(vol workloads.Volume) rsu {
